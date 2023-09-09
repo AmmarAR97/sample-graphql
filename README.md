@@ -16,6 +16,7 @@ Build an Email Campaign Manager that can do the following:
 * [Django 4.2.5](https://www.djangoproject.com/): The web framework for perfectionists with deadlines (Django builds better web apps with less code).
 * [DRF 3.10.](www.django-rest-framework.org/): A powerful and flexible toolkit for building Web APIs
 * [PostgreSQL 14.9](https://www.postgresql.org/): PostgreSQL is a powerful, open source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads
+* [Celery 5.3.4](https://docs.celeryq.dev/en/stable/django/index.html): Celery is a powerful asynchronous task queue system integrated with the Django web framework for handling background tasks and distributed computing.
 * [Redis 5](https://redis.io/): The open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
 
 
@@ -55,10 +56,14 @@ Build an Email Campaign Manager that can do the following:
 * #### Run It
     Fire up the server using this one simple command:
     ```bash
-        $ python manage.py runserver 0:8000
+        $ python manage.py runserver
     ```
     You can now access the file API service on your browser by using
     ```
         http://localhost:8000/
-
-
+    ```
+    Fire up celery in a separate terminal:
+    ```bash
+    $ celery -A campaing_manager worker --loglevel=info
+    $ celery -A campaing_manager beat --loglevel=info
+    ```
