@@ -1,0 +1,125 @@
+<!-- {% load staticfiles %} -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600,700,800&display=swap');
+
+        * {
+          margin: 0;
+          border: 0;
+          padding: 0;
+        }
+
+        body {
+          max-width: 400px;
+          background-color: #ffffff;
+          margin: 0 auto;
+          padding: 2%;
+          color: #ffffff;
+          font-family: 'Raleway', sans-serif;
+        }
+
+        .wrapper {
+          background-color: #b3cee5;
+          color: #ffffff;
+        }
+
+        .inner_wrapper {
+          padding: 5%;
+          color: #ffffff;
+        }
+
+        #logo {
+          max-width: 35rem;
+          margin: 2%;
+        }
+
+        #logo img {
+          width: 40%;
+        }
+
+        .header_text {
+          margin-top: 2rem;
+          font-size: 2.3rem;
+          font-weight: bold;
+          color: #000000;
+        }
+
+        .mt-1{
+              margin-top: 1rem;
+              font-size: large;
+        }
+
+        .mt-2{
+              margin-top: 2rem;
+        }
+
+        .header_text img{
+          width: 1.5rem;
+
+        }
+
+        .col-two{
+              margin: 2rem 0;
+              color: #ffffff;
+        }
+
+        .color_bold{
+          color: #ffb300;
+          font-weight: 600;
+        }
+
+        .numFont{
+          font-family: sans-serif;
+          letter-spacing: 0.5px;
+        }
+
+        p {
+          color: #000000;
+        }
+
+        .col-one {
+          text-align: center;
+          border: 3px solid white;
+        }
+    </style>
+</head>
+<body>
+<div style="display: none; max-height: 0px; overflow: hidden; font-size: 1px; line-height: 1px; color: #ffffff;">
+    <p>{{preview_text}}</p>
+</div>
+<div class="wrapper">
+    <div class="inner_wrapper">
+        <header>
+            <div id="logo">
+                <img src="MikeLegal Logo Blue.svg" alt="">
+            </div>
+        </header>
+        <div class="col-one">
+            <div class="col-two">
+                <div>{{html_content}}</div>
+                <br>
+                <p>{{plain_text_content}}</p>
+                <br>
+                <div style="margin: 0 auto; width:250px;">
+                    <a href='{{article_url}}'>
+                        <button style="padding: 14px 40px;border-radius: 12px;background-color: #4682B4;">
+                            Read More
+                        </button>
+                    </a>
+                </div>
+                <br>
+                <p>Published Date: {{published_date}}</p>
+            </div>
+            <td align="center" valign="top"><table border="0" cellspacing="0" cellpadding="0" align="left" class="em_wrapper">
+                <tbody><tr>
+                    <td class="em_grey" align="center" valign="middle" style="font-family: Arial, sans-serif; font-size: 11px; line-height: 16px; color:#434343;"> 2021 MikeLegal &nbsp;|&nbsp;  <a href={{unsubscribe_url}} target="_blank" style="text-decoration:underline; color:#434343;">Unsubscribe</a></td>
+                </tr></tbody>
+            </table></td>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
