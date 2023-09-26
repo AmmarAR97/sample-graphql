@@ -25,7 +25,7 @@ Build an Email Campaign Manager that can do the following:
 
 * After doing this, clone this repo to your machine
     ```bash
-        $ git clone git@github.com:AmmarAR97/mikelegal.git
+        $ git clone git@github.com:AmmarAR97/campaign_manager.git
     ```
 
 * Then move into the cloned repo as:
