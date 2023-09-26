@@ -1,4 +1,4 @@
-# mikelegal Task - 1
+# Task
 
 Build an Email Campaign Manager that can do the following:
 
