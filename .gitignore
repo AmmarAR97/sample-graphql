@@ -57,7 +57,7 @@ share/
 /env/
 MANIFEST
 coverage.*
-.env
+#.env
 lib/
 lib64/
 lib64
