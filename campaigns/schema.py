@@ -36,12 +36,8 @@ class Query(ObjectType):
     all_campaigns = DjangoConnectionField(CampaignType)
     all_email_campaigns = DjangoConnectionField(EmailCampaignType)
 
-    # @custom_user_passes_test(lambda user: user.groups.filter(name='manager').exists())
+    @custom_user_passes_test(lambda user: user.groups.filter(name='manager').exists())
     def resolve_all_campaigns(self, info, **kwargs):
-        # request = info.context
-        # auth_token = request.META.get('HTTP_AUTHORIZATION', '')
-        # user_id = request.META.get('HTTP_USER_ID')
-        # if is_manager(user_id, auth_token):
         print(info.context.user.id)
         return Campaign.objects.all()
 

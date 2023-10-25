@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'campaing_manager.TokenAuthMiddleware.TokenAuthMiddleware'
+    'campaing_manager.TokenAuthMiddleware.TokenAuthMiddleware'
 ]
 
 ROOT_URLCONF = 'campaing_manager.urls'
