@@ -62,3 +62,37 @@ class UnSubscribeView(generics.RetrieveUpdateAPIView):
 
         return HttpResponse(html_content, content_type='text/html')
 
+
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.http import JsonResponse
+
+class HasuraWebhookView(generics.RetrieveAPIView):
+
+    queryset = User.objects.all()
+    # serializer_class = SubscriberSerializer
+
+    def get(self, request, *args, **kwargs):
+        auth_token = request.META.get('HTTP_AUTHORIZATION', '').replace('Token ', '')
+        table = request.META.get('HTTP_Table')
+        if auth_token != "":
+            try:
+                token = Token.objects.get(key=auth_token)
+                user_id = token.user.id
+                user = User.objects.get(id=user_id)
+                user_groups = user.groups.all()
+                # group_names = list(user_groups.values_list('name', flat=True))
+                response_data = {
+                    "X-Hasura-User-Id": str(user_id),
+                    "x-hasura-default-role": "user",
+                    "x-hasura-role": "user",
+                    # "x-hasura-allowed-roles": str(group_names),
+                }
+                return JsonResponse(response_data)
+            except Token.DoesNotExist:
+                # If the token does not exist, return a 401 Unauthorized response
+                return HttpResponse(status=401)
+        else:
+            return HttpResponse(status=401)
+
+

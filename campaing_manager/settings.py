@@ -25,8 +25,8 @@ SECRET_KEY = fetch_env_variable('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = fetch_env_variable('DEBUG')
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = ['b1d6-202-140-34-100.ngrok-free.app']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_celery_results',
+    'channels',
+    'graphene_django',
+    'rest_framework.authtoken',
 
     'campaigns',
     'subscribers'
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'campaing_manager.TokenAuthMiddleware.TokenAuthMiddleware'
 ]
 
 ROOT_URLCONF = 'campaing_manager.urls'
@@ -77,7 +81,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'campaing_manager.wsgi.application'
-
+# ASGI_APPLICATION = ("campaing_manager.asgi.application")
+# ASGI_THREADS = 1000
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",
+#     },
+# }
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -104,7 +114,6 @@ CELERY_TIMEZONE = "Asia/Kolkata"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -123,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -135,7 +143,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -146,3 +153,22 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+GRAPHENE = {
+    'SCHEMA': 'campaign_manager.schema',
+    # 'MIDDLEWARE': (
+    #     'graphene_django.debug.DjangoDebugMiddleware',
+    #     'graphql_jwt.middleware.JSONWebTokenMiddleware'
+    # )
+}
+
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
